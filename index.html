@@ -6,29 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <title>Library</title>
-    <script src="app.js" defer></script>
   </head>
   <body>
     <header class="header">My Library</header>
 
     <form id="bookForm">
       <label for="Title">Title:</label>
-      <input type="text" id="title" />
+      <input type="text" id="title" autocomplete="off" />
       <label for="Author">Author:</label>
-      <input type="text" id="author" />
+      <input type="text" id="author" autocomplete="off" />
       <label for="ISBN">ISBN:</label>
-      <input type="text" id="ISBN" />
+      <input type="text" id="isbn" autocomplete="off" />
       <input type="submit" value="Add Book" id="submitBtn" />
     </form>
 
     <table class="bookTable">
-      <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Delete</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>ISBN</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
       <tbody id="book-list"></tbody>
     </table>
+    <script src="app.js"></script>
   </body>
 </html>
