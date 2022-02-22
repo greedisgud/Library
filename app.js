@@ -64,14 +64,18 @@ bookForm.addEventListener("submit", (e) => {
   const author = document.getElementById("author").value;
   const isbn = document.getElementById("isbn").value;
 
-  //create new book with these values
-  const book = new Book(title, author, isbn);
+  if (title === "" || author === "" || isbn === "") {
+    alert("fill in all fields");
+  } else {
+    //create new book with these values
+    const book = new Book(title, author, isbn);
 
-  //Add book to display in UI
-  UI.addBookToList(book);
+    //Add book to display in UI
+    UI.addBookToList(book);
 
-  //Clear Fields
-  UI.clearFields();
+    //Clear Fields
+    UI.clearFields();
+  }
 });
 
 //Remove a book
