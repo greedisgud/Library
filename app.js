@@ -8,20 +8,7 @@ class Book {
 
 class UI {
   static displayBooks() {
-    const myBooks = [
-      {
-        title: "he",
-        author: "j",
-        isbn: "123",
-      },
-      {
-        title: "kk",
-        author: "max",
-        isbn: "9982",
-      },
-    ];
-
-    const books = myBooks;
+    const books = Store.getBooks();
 
     books.forEach((book) => UI.addBookToList(book));
   }
@@ -52,6 +39,38 @@ class UI {
   }
 }
 
+class Storage {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem("books") === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem("books"));
+    }
+    return books;
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+
+    books.push(book);
+
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+
+  static removeBook(isbn) {
+    const books = Store.getBooks();
+
+    books.forEach((book, index) => {
+      if (book.isbn === isbn) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem("books", JSON.stringify(books));
+  }
+}
+
 //Display a Book in table
 document.addEventListener("DOMContentLoaded", UI.displayBooks);
 
@@ -72,6 +91,9 @@ bookForm.addEventListener("submit", (e) => {
 
     //Add book to display in UI
     UI.addBookToList(book);
+
+    //Add book to storage
+    Store.addBook(book);
 
     //Clear Fields
     UI.clearFields();
