@@ -38,7 +38,32 @@ class UI {
 
     list.appendChild(row);
   }
+
+  static clearFields() {
+    document.getElementById("title").value = "";
+    document.getElementById("author").value = "";
+    document.getElementById("isbn").value = "";
+  }
 }
 
 //Display a Book in table
 document.addEventListener("DOMContentLoaded", UI.displayBooks);
+
+//Add a book using form
+const bookForm = document.getElementById("bookForm");
+bookForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const isbn = document.getElementById("isbn").value;
+
+  //create new book with these values
+  const book = new Book(title, author, isbn);
+
+  //Add book to display in UI
+  UI.addBookToList(book);
+
+  //Clear Fields
+  UI.clearFields();
+});
