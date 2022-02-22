@@ -34,9 +34,15 @@ class UI {
     <td style="padding:0 20px 0 20px;">${book.title}</td>
     <td style="padding:0 20px 0 20px;">${book.author}</td>
     <td style="padding:0 20px 0 20px;">${book.isbn}</td>
-    <td style="padding:0 20px 0 20px;">X</td>`;
+    <td style="padding:0 20px 0 20px;"><a href = "#" class = delete>X</a></td>`;
 
     list.appendChild(row);
+  }
+
+  static deleteBook(el) {
+    if (el.classList.contains("delete")) {
+      el.parentElement.parentElement.remove();
+    }
   }
 
   static clearFields() {
@@ -66,4 +72,9 @@ bookForm.addEventListener("submit", (e) => {
 
   //Clear Fields
   UI.clearFields();
+});
+
+//Remove a book
+document.getElementById("book-list").addEventListener("click", (e) => {
+  UI.deleteBook(e.target);
 });
